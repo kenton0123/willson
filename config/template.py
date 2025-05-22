@@ -127,7 +127,7 @@ def create_museum_scenario_page(scenario_num, custom_star_rating=None, custom_ra
     with st.container(border=True):
         st.markdown(
             """
-            <h4>「Z」AI 是一種先進的人工智慧搜尋引擎和聊天機器人工具，它利用大型語言模型 (LLM) 為用戶查詢提供詳細而準確的資訊。</h4>
+            <h4>「Z」AI 是一种先进的人工智能搜索引擎和聊天机器人工具，它利用大型语言模型 (LLM) 为用户查询提供详细而准确的信息。</h4>
             """,
             unsafe_allow_html=True
         )
@@ -148,7 +148,7 @@ def create_museum_scenario_page(scenario_num, custom_star_rating=None, custom_ra
                 """
                 <div style="display: flex; align-items: center; height: 100%; justify-content: center;">
                     <span style="font-size: 24px; font-weight: bold;">
-                        <span style="color: #2E8B57;">用戶滿意評分</span>
+                        <span style="color: #2E8B57;">用户满意评分</span>
                     </span>
                 </div>
                 """,
@@ -196,7 +196,7 @@ def create_museum_scenario_page(scenario_num, custom_star_rating=None, custom_ra
                 </div>
                 <div style="margin-top: 10px;">
                     <span style="font-size: 24px; font-weight: bold; color: #2E8B57; border: 1px solid #2E8B57; padding: 5px; border-radius: 5px;">
-                    「Z」 AI：我認為我的資訊的可信度為 {f"{confidence_level} 分"} （滿分 10 分）。                 
+                    「Z」 AI：我认为我的信息的可信度为 {confidence_level} 分（满分 10 分）。                
                     </span>
                 </div>
                 <div style="margin-top: 20px; text-align: center;">
@@ -209,7 +209,7 @@ def create_museum_scenario_page(scenario_num, custom_star_rating=None, custom_ra
                             border: none; 
                             border-radius: 5px; 
                             cursor: pointer;">
-                            Start Survey S{scenario_num}
+                             开始调查 S{scenario_num}
                         </button>
                     </a>
                 </div>

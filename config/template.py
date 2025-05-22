@@ -76,7 +76,7 @@ def create_museum_scenario_page(scenario_num, custom_star_rating=None, custom_ra
             font-weight: bold;
         }
         .blue-bg {
-            background-color: #0000FF;
+            background-color: red;
             color: white;
             padding: 2px 5px;
             border-radius: 3px;
@@ -89,10 +89,10 @@ def create_museum_scenario_page(scenario_num, custom_star_rating=None, custom_ra
     st.markdown(
         """
             <div class="title">
-                指引：請複製以下問題以獲取背景資訊：
+                指引：请复制以下问题以获取背景信息：
                 </br>
                 <span class="blue-bg" style="visibility=hidden;">
-                “討論大英博物館的歷史，包括其位置、藏品規模、遊客數量以及最近值得注意的展覽。”</span>
+                "讨论大英博物馆的历史，包括其位置、藏品规模、游客数量以及最近值得注意的展览。"</span>
             </div>
             """,
         unsafe_allow_html=True
@@ -127,7 +127,7 @@ def create_museum_scenario_page(scenario_num, custom_star_rating=None, custom_ra
     with st.container(border=True):
         st.markdown(
             """
-            <h4>「Z」AI 是一種先進的人工智慧搜尋引擎和聊天機器人工具，它利用大型語言模型 (LLM) 為用戶查詢提供詳細而準確的資訊。</h4>
+            <h4>「Z」AI 是一种先进的人工智能搜索引擎和聊天机器人工具，它利用大型语言模型 (LLM) 为用户查询提供详细而准确的信息。</h4>
             """,
             unsafe_allow_html=True
         )
@@ -148,7 +148,7 @@ def create_museum_scenario_page(scenario_num, custom_star_rating=None, custom_ra
                 """
                 <div style="display: flex; align-items: center; height: 100%; justify-content: center;">
                     <span style="font-size: 24px; font-weight: bold;">
-                        <span style="color: #2E8B57;">用戶滿意評分</span>
+                        <span style="color: #2E8B57;">用户满意评分</span>
                     </span>
                 </div>
                 """,
@@ -159,57 +159,71 @@ def create_museum_scenario_page(scenario_num, custom_star_rating=None, custom_ra
                 f"""
                 <div style="display: flex; align-items: center; height: 100%;">
                     <span style="font-size: 22px; font-weight: bold;">
-                        {star_rating}/5.0 ({rating_count} 萬人)
+                        {star_rating}/5.0 ({rating_count} 万人)
                     </span>
                 </div>
                 """,
                 unsafe_allow_html=True
             )
     # Display chat history
-    for message in st.session_state.messages:
+    for i, message in enumerate(st.session_state.messages):
         with st.chat_message(message["role"]):
-            st.markdown(message["content"])
+            # If it's an assistant message with both content and additional_html
+            if message["role"] == "assistant" and "additional_html" in message:
+                st.markdown(message["content"])
+                st.markdown(message["additional_html"], unsafe_allow_html=True)
+            else:
+                st.markdown(message["content"])
 
     # Handle user input
-    if prompt := st.chat_input("Discuss the history of the British Museum, including its location, collection size, visitor numbers, and notable recent exhibitions."):
+    if prompt := st.chat_input("Discuss the history of Disneyland Paris, including its facilities, visitor numbers, and recent major exhibitions."):
         user_message = {"role": "user", "content": prompt}
         st.session_state.history.append(user_message)
         st.session_state.messages.append(user_message)
+
         with st.chat_message("user"):
             st.markdown(prompt)
 
+        # Define additional HTML content with confidence level and survey button
+        survey_link = survey_href if survey_href else ""
+        additional_html = f"""
+        <div style="margin-top: 10px;">
+            <span style="font-size: 24px; font-weight: bold; color: #2E8B57; border: 1px solid #2E8B57; padding: 5px; border-radius: 5px;">
+                🤖 AI自信水平: {confidence_level}/10
+            </span>
+        </div>
+        <div style="margin-top: 10px;">
+            <span style="font-size: 24px; font-weight: bold; color: #2E8B57; border: 1px solid #2E8B57; padding: 5px; border-radius: 5px;">
+            「Z」 AI：我认为我的信息的可信度为 {f"{confidence_level} 分"} （满分 10 分）。                 
+            </span>
+        </div>
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="{survey_link}" target="_blank" style="text-decoration: none;">
+                <button style="
+                    background-color: #4CAF50; 
+                    color: white; 
+                    padding: 10px 20px; 
+                    font-size: 16px; 
+                    border: none; 
+                    border-radius: 5px; 
+                    cursor: pointer;">
+                    开始问卷 S{scenario_num}
+                </button>
+            </a>
+        </div>
+        """
+
         with st.chat_message("assistant"):
+            # Stream the response
             response = st.write_stream(generate_response(scenario_num))
-            survey_link = survey_href if survey_href else ""
-            st.markdown(
-                f"""
-                <div style="margin-top: 10px;">
-                    <span style="font-size: 24px; font-weight: bold; color: #2E8B57; border: 1px solid #2E8B57; padding: 5px; border-radius: 5px;">
-                        🤖 AI自信水平: {confidence_level}/10
-                    </span>
-                </div>
-                <div style="margin-top: 10px;">
-                    <span style="font-size: 24px; font-weight: bold; color: #2E8B57; border: 1px solid #2E8B57; padding: 5px; border-radius: 5px;">
-                    「Z」 AI：我認為我的資訊的可信度為 {f"{confidence_level} 分"} （滿分 10 分）。                 
-                    </span>
-                </div>
-                <div style="margin-top: 20px; text-align: center;">
-                    <a href="{survey_link}" target="_blank" style="text-decoration: none;">
-                        <button style="
-                            background-color: #4CAF50; 
-                            color: white; 
-                            padding: 10px 20px; 
-                            font-size: 16px; 
-                            border: none; 
-                            border-radius: 5px; 
-                            cursor: pointer;">
-                            Start Survey S{scenario_num}
-                        </button>
-                    </a>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-        assistant_message = {"role": "assistant", "content": response}
+            # Show additional HTML content after streaming is complete
+            st.markdown(additional_html, unsafe_allow_html=True)
+
+        # Store both the response AND the additional HTML content
+        assistant_message = {
+            "role": "assistant",
+            "content": response,
+            "additional_html": additional_html
+        }
         st.session_state.history.append(assistant_message)
         st.session_state.messages.append(assistant_message)

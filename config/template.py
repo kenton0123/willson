@@ -184,38 +184,45 @@ def create_museum_scenario_page(scenario_num, custom_star_rating=None, custom_ra
         with st.chat_message("user"):
             st.markdown(prompt)
 
+        survey_link = survey_href if survey_href else ""
+        additional_html = f"""
+        <div style="margin-top: 10px;">
+            <span style="font-size: 24px; font-weight: bold; color: #2E8B57; border: 1px solid #2E8B57; padding: 5px; border-radius: 5px;">
+                🤖 AI自信水平: {confidence_level}/10
+            </span>
+        </div>
+        <div style="margin-top: 10px;">
+            <span style="font-size: 24px; font-weight: bold; color: #2E8B57; border: 1px solid #2E8B57; padding: 5px; border-radius: 5px;">
+            「Z」 AI：我认为我的信息的可信度为 {f"{confidence_level} 分"} （满分 10 分）。                 
+            </span>
+        </div>
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="{survey_link}" target="_blank" style="text-decoration: none;">
+                <button style="
+                    background-color: #4CAF50; 
+                    color: white; 
+                    padding: 10px 20px; 
+                    font-size: 16px; 
+                    border: none; 
+                    border-radius: 5px; 
+                    cursor: pointer;">
+                    开始问卷 S{scenario_num}
+                </button>
+            </a>
+        </div>
+        """
+
         with st.chat_message("assistant"):
+            # Stream the response
             response = st.write_stream(generate_response(scenario_num))
-            survey_link = survey_href if survey_href else ""
-            st.markdown(
-                f"""
-                <div style="margin-top: 10px;">
-                    <span style="font-size: 24px; font-weight: bold; color: #2E8B57; border: 1px solid #2E8B57; padding: 5px; border-radius: 5px;">
-                        🤖 AI自信水平: {confidence_level}/10
-                    </span>
-                </div>
-                <div style="margin-top: 10px;">
-                    <span style="font-size: 24px; font-weight: bold; color: #2E8B57; border: 1px solid #2E8B57; padding: 5px; border-radius: 5px;">
-                    「Z」 AI：我认为我的信息的可信度为 {confidence_level} 分（满分 10 分）。                
-                    </span>
-                </div>
-                <div style="margin-top: 20px; text-align: center;">
-                    <a href="{survey_link}" target="_blank" style="text-decoration: none;">
-                        <button style="
-                            background-color: #4CAF50; 
-                            color: white; 
-                            padding: 10px 20px; 
-                            font-size: 16px; 
-                            border: none; 
-                            border-radius: 5px; 
-                            cursor: pointer;">
-                             开始调查 S{scenario_num}
-                        </button>
-                    </a>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-        assistant_message = {"role": "assistant", "content": response}
+            # Show additional HTML content after streaming is complete
+            st.markdown(additional_html, unsafe_allow_html=True)
+
+        # Store both the response AND the additional HTML content
+        assistant_message = {
+            "role": "assistant",
+            "content": response,
+            "additional_html": additional_html
+        }
         st.session_state.history.append(assistant_message)
         st.session_state.messages.append(assistant_message)

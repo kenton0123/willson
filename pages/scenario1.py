@@ -1,7 +1,7 @@
 # disney_scenario1.py
 import streamlit as st
 from config.template import create_museum_scenario_page
-from utils import capture_status
+from ..utils import capture_status
 
 def main():
     capture_status()

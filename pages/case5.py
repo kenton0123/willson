@@ -1,5 +1,5 @@
 import streamlit as st
-from utils import capture_and_modify_status
+from config.utils import capture_and_modify_status
 
 # Set page configuration
 st.set_page_config(

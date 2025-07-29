@@ -1,6 +1,6 @@
 import streamlit as st
 
-def capture_status():
+def capture_and_modify_status():
     query_params = st.query_params if hasattr(st, "query_params") else st.experimental_get_query_params()
     status = query_params.get("state", None)  # Assuming 'state' is the parameter name
 

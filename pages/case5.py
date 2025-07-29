@@ -84,20 +84,18 @@ def main():
             width: 100%;  /* Ensure full width for centering */
         }
         .custom-page-link {
-            font-size: 36px !important;
+            font-size: 36px !important;  /* Bigger text */
             font-weight: bold !important;
             color: white !important;
-            background-color: #2E8B57 !important;
-            padding: 10px 20px !important;
-            border-radius: 8px !important;
+            background-color: #2E8B57 !important;  /* Green button */
+            padding: 10px 20px !important;  /* Button padding */
+            border-radius: 8px !important;  /* Rounded corners */
             text-decoration: none !important;
             display: inline-flex !important;
             align-items: center !important;
-            justify-content: center !important;
-            text-align: center !important;
         }
         .custom-page-link:hover {
-            background-color: #3CB371 !important;
+            background-color: #3CB371
         }
         .custom-page-link span[role="img"] {
             font-size: 36px !important;

@@ -177,10 +177,8 @@ Instruction: Please copy the following question to receive background informatio
                         width: 100%;  /* Ensure full width for centering */
                     }
                 </style>
-            """,
                 f'<a href="{next_page_url}" class="stPageLink">开始作业 <span role="img">🚀</span></a>',
-                unsafe_allow_html=True
-            )
+            """, unsafe_allow_html=True)
 
             st.markdown('</div>', unsafe_allow_html=True)
 

@@ -145,7 +145,7 @@ Instruction: Please copy the following question to receive background informatio
             state = st.session_state.get('state', '')
             
             st.page_link(
-                f"pages/scenario5.py?state={state}",
+                f"pages/scenario5?state={state}",
                 label="开始作业",
                 icon="🚀"
             )

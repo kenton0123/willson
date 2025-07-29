@@ -174,7 +174,7 @@ Instruction: Please copy the following question to receive background informatio
             
             # Create the button with the dynamic URL
             st.markdown(
-                f'<a href="{next_page_url}" class="stPageLink" target="_self">开始作业 <span role="img">🚀</span></a>',
+                f'<a href="{next_page_url}" class="custom-page-link" target="_self">开始作业 <span role="img">🚀</span></a>',
                 unsafe_allow_html=True
             )
 

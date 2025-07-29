@@ -57,7 +57,7 @@ def main():
                 font-weight: bold;
                 font-size: 28px;
             }
-        .button-container .stPageLink a {
+        .stPageLink a {
             font-size: 36px !important;  /* Bigger text */
             font-weight: bold !important;
             color: white !important;

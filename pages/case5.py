@@ -140,18 +140,8 @@ Instruction: Please copy the following question to receive background informatio
         with col3:
             st.markdown('<div class="button-container">',
                         unsafe_allow_html=True)
-            
-           state = st.session_state.get('state', '')
-            # Use relative path instead of absolute
-            next_page_url = f"scenario5?state={state}"
-            
-            st.page_link(
-                next_page_url, 
-                label="开始作业", 
-                icon="🚀",
-                use_container_width=True
-            )
-            
+            st.page_link("pages/scenario5.py",
+                     label="开始作业", icon="🚀")
             st.markdown('</div>', unsafe_allow_html=True)
 
 

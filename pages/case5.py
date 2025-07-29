@@ -1,4 +1,5 @@
 import streamlit as st
+from utils import capture_and_modify_status
 
 # Set page configuration
 st.set_page_config(
@@ -9,6 +10,7 @@ st.set_page_config(
 
 
 def main():
+    capture_and_modify_status()
     # Custom CSS for a professional academic look
     st.markdown("""
         <style>

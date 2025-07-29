@@ -142,7 +142,6 @@ Instruction: Please copy the following question to receive background informatio
                         unsafe_allow_html=True)
             
             state = st.session_state.get('state', '')
-            next_page_url = f"/pages/scenario5.py?state={state}"
 
             if st.button("开始作业"):
                 st.experimental_set_query_params(state=state)  # Set the state in URL

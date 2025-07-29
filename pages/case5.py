@@ -10,7 +10,7 @@ st.set_page_config(
 
 
 def main():
-    capture_and_modify_state()
+    capture_and_modify_state(display=False)
     # Custom CSS for a professional academic look
     st.markdown("""
         <style>

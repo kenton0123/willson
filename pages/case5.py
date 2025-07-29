@@ -151,7 +151,6 @@ Instruction: Please copy the following question to receive background informatio
                 icon="🚀",
                 use_container_width=True
             )
-
             
             st.markdown('</div>', unsafe_allow_html=True)
 

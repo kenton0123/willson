@@ -144,14 +144,12 @@ Instruction: Please copy the following question to receive background informatio
             # Get the state parameter from session state
             state = st.session_state.get('state', '')
             
-            # Create the URL with state parameter
-            next_page_url = f"pages/scenario5?state={state}"
-            
-            # Create the button with the dynamic URL
-            st.markdown(
-                f'<a href="{next_page_url}" class="stPageLink">开始作业 <span role="img">🚀</span></a>',
-                unsafe_allow_html=True
+            st.page_link(
+                f"pages/scenario5.py?state={state}",
+                label="开始作业",
+                icon="🚀"
             )
+
             
             st.markdown('</div>', unsafe_allow_html=True)
 

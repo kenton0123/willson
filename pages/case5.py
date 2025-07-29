@@ -166,17 +166,10 @@ Instruction: Please copy the following question to receive background informatio
             st.markdown('<div class="button-container">',
                         unsafe_allow_html=True)
             
-            # Get the state parameter from session state
-            state = st.session_state.get('state', '')
-            
-             # Create the URL with state parameter
-            next_page_url = f"scenario5?state={state}"
-            
-            # Create the button with the dynamic URL
-            st.markdown(
-                f'<a href="{next_page_url}" class="custom-page-link">开始作业 <span role="img">🚀</span></a>',
-                unsafe_allow_html=True
-            )
+            if st.button("开始作业 🚀", key="start_assignment", use_container_width=True):
+                state = st.session_state.get('state', '')
+                # 使用switch_page在应用内导航
+                st.switch_page(f"pages/scenario5?state={state}")
 
             st.markdown('</div>', unsafe_allow_html=True)
 

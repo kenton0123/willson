@@ -142,7 +142,7 @@ Instruction: Please copy the following question to receive background informatio
                         unsafe_allow_html=True)
             
             state = st.session_state.get('status', '')
-            next_page_url = f"pages/scenario5.py?state={state}"
+            next_page_url = f"pages/scenario5?state={state}"
             st.page_link(next_page_url, label="开始作业", icon="🚀")
             
             st.markdown('</div>', unsafe_allow_html=True)

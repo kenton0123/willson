@@ -142,8 +142,15 @@ Instruction: Please copy the following question to receive background informatio
                         unsafe_allow_html=True)
             
             state = st.session_state.get('state', '')
+            # Use relative path instead of absolute
             next_page_url = f"pages/scenario5?state={state}"
-            st.page_link(next_page_url, label="开始作业", icon="🚀")
+            
+            st.page_link(
+                next_page_url, 
+                label="开始作业", 
+                icon="🚀",
+                use_container_width=True
+            )
             
             st.markdown('</div>', unsafe_allow_html=True)
 

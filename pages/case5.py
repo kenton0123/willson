@@ -148,7 +148,36 @@ Instruction: Please copy the following question to receive background informatio
             next_page_url = f"scenario5?state={state}"
             
             # Create the button with the dynamic URL
-            st.markdown(
+            st.markdown("""
+                <style>
+                    .stPageLink a {
+                        font-size: 36px !important;  /* Bigger text */
+                        font-weight: bold !important;
+                        color: white !important;
+                        background-color: #2E8B57 !important;  /* Green button */
+                        padding: 10px 20px !important;  /* Button padding */
+                        border-radius: 8px !important;  /* Rounded corners */
+                        text-decoration: none !important;
+                        display: inline-flex !important;
+                        align-items: center !important;
+                    }
+                    .stPageLink a:hover {
+                        background-color: #3CB371 !important;  /* Lighter green on hover */
+                    }
+                    .stPageLink a span[role="img"] {
+                        font-size: 36px !important;  /* Bigger icon */
+                        margin-left: 8px !important;  /* Space between text and icon */
+                    }
+                    /* Center the button */
+                    .button-container {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-top: 20px;  /* Space above button */
+                        width: 100%;  /* Ensure full width for centering */
+                    }
+                </style>
+            """,
                 f'<a href="{next_page_url}" class="stPageLink">开始作业 <span role="img">🚀</span></a>',
                 unsafe_allow_html=True
             )

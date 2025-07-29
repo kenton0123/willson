@@ -83,6 +83,33 @@ def main():
             margin-top: 20px;  /* Space above button */
             width: 100%;  /* Ensure full width for centering */
         }
+        .custom-page-link {
+            font-size: 36px !important;
+            font-weight: bold !important;
+            color: white !important;
+            background-color: #2E8B57 !important;
+            padding: 10px 20px !important;
+            border-radius: 8px !important;
+            text-decoration: none !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
+        }
+        .custom-page-link:hover {
+            background-color: #3CB371 !important;
+        }
+        .custom-page-link span[role="img"] {
+            font-size: 36px !important;
+            margin-left: 8px !important;
+        }
+        /* Center the button */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            width: 100%;
         </style>
     """, unsafe_allow_html=True)
 
@@ -149,7 +176,7 @@ Instruction: Please copy the following question to receive background informatio
             
             # Create the button with the dynamic URL
             st.markdown(
-                f'<a href="{next_page_url}" class="stPageLink">开始作业 <span role="img">🚀</span></a>',
+                f'<a href="{next_page_url}" class="custom-page-link">开始作业 <span role="img">🚀</span></a>',
                 unsafe_allow_html=True
             )
 

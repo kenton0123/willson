@@ -145,7 +145,7 @@ Instruction: Please copy the following question to receive background informatio
             state = st.session_state.get('state', '')
             
              # Create the URL with state parameter
-            next_page_url = f"pages/scenario5?state={state}"
+            next_page_url = f"pages/scenario5"
             
             # Create the button with the dynamic URL
             st.markdown(

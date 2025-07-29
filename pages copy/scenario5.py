@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 from streamlit_star_rating import st_star_rating
-
+from utils import capture_and_modify_status
 
 st.markdown(
     """
@@ -58,6 +58,7 @@ def save_feedback(index):
 
 
 def main():
+    capture_and_modify_status()
 
     st.markdown("""
         <style>

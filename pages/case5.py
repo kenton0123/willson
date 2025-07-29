@@ -143,7 +143,7 @@ Instruction: Please copy the following question to receive background informatio
             
            state = st.session_state.get('state', '')
             # Use relative path instead of absolute
-            next_page_url = f"pages/scenario5?state={state}"
+            next_page_url = f"scenario5?state={state}"
             
             st.page_link(
                 next_page_url, 

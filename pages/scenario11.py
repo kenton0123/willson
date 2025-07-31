@@ -1,4 +1,5 @@
 # disney_scenario3.py
+
 import streamlit as st
 from config.template import create_museum_scenario_page
 from config.utils import capture_and_modify_state

@@ -11,7 +11,7 @@ def main():
     custom_rating_count = 12  # 自定义评分人数 (以K为单位，例如150.5表示150,500人)
     custom_level_confidence = 2
     
-    survey_base = "https://surveys.lifepointspanel.com/survey/apac/ISE4911?panels=LFP&list=0"  # 自定义调查链接
+    survey_base = "https://surveys.lifepointspanel.com/survey/apac/ISE4911"  # 自定义调查链接
     survey_href = f"{survey_base}?state={state}"
     
     create_museum_scenario_page(

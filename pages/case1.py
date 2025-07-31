@@ -1,4 +1,5 @@
 import streamlit as st
+from config.utils import capture_and_modify_state
 
 # Set page configuration
 st.set_page_config(
@@ -9,6 +10,7 @@ st.set_page_config(
 
 
 def main():
+    capture_and_modify_state(display=False)
     # Custom CSS for a professional academic look
     st.markdown("""
         <style>
@@ -81,13 +83,38 @@ def main():
             margin-top: 20px;  /* Space above button */
             width: 100%;  /* Ensure full width for centering */
         }
+        .custom-page-link {
+            font-size: 36px !important;  /* Bigger text */
+            font-weight: bold !important;
+            color: white !important;
+            background-color: #2E8B57 !important;  /* Green button */
+            padding: 10px 20px !important;  /* Button padding */
+            border-radius: 8px !important;  /* Rounded corners */
+            text-decoration: none !important;
+            display: inline-flex !important;
+            align-items: center !important;
+        }
+        .custom-page-link:hover {
+            background-color: #3CB371
+        }
+        .custom-page-link span[role="img"] {
+            font-size: 36px !important;
+            margin-left: 8px !important;
+        }
+        /* Center the button */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            width: 100%;
         </style>
     """, unsafe_allow_html=True)
 
     # Title and intro
-    st.markdown('<div class="title">大英博物馆 </div>',
+    st.markdown('<div class="title">The British Museum: A Critical Assignment</div>',
                 unsafe_allow_html=True)
-    st.markdown('<div class="warning">相当于课程成绩的 50%</div>',
+    st.markdown('<div class="warning">Worth 50% of the Course Grade</div>',
                 unsafe_allow_html=True)
     st.markdown("---")
 
@@ -138,8 +165,19 @@ Instruction: Please copy the following question to receive background informatio
         with col3:
             st.markdown('<div class="button-container">',
                         unsafe_allow_html=True)
-            st.page_link("pages/scenario1.py",
-                         label="开始作业", icon="🚀")
+            
+            # Get the state parameter from session state
+            state = st.session_state.get('state', '')
+            
+             # Create the URL with state parameter
+            next_page_url = f"scenario1?state={state}"
+            
+            # Create the button with the dynamic URL
+            st.markdown(
+                f'<a href="{next_page_url}" class="custom-page-link" target="_self">开始作业 <span role="img">🚀</span></a>',
+                unsafe_allow_html=True
+            )
+
             st.markdown('</div>', unsafe_allow_html=True)
 
 
